@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  cAdvisor:
+    image: google/cadvisor
+    container_name: cadvisor
+    ports:
+      - "8080:8080"
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+
+  
+networks:
+  my_network:
+    external: true
+
+  #mysql-exporter:
+    #image: prom/mysqld-exporter
+    
